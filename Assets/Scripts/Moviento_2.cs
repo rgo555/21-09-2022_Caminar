@@ -23,7 +23,7 @@ public class Moviento_2 : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(playerTransform.up * jumpforce);
+            rb.AddForce(playerTransform.up * jumpforce, ForceMode2D.Impulse);
         }
     }
    
@@ -47,6 +47,10 @@ public class Moviento_2 : MonoBehaviour
             animator.SetBool("Run" , true); 
             playerTransform.rotation = Quaternion.Euler(0, -180, 0);
         }
+
+        //GameManager.Instance.RestarVidas();
+        //GameManager.Instance.vidas; 
+        Global.nivel = 1;
     }
  
     //Update is called once per frame
