@@ -11,6 +11,12 @@ public class Moviento_2 : MonoBehaviour
     private Animator animator;
     private Transform playerTransform; 
 
+    public bool isGrounded; 
+    public Transform groundSensor; 
+    public LayerMask ground; 
+    public float sensorRadius = 0.1f;
+
+
     private void Awake()
     {
         
@@ -21,9 +27,16 @@ public class Moviento_2 : MonoBehaviour
 
     void jump()
     {
-        if(Input.GetButtonDown("Jump"))
+        isGrounded = Physics2D.OverlapCircle(groundSensor.position, sensorRadius, ground);
+        
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        { 
+            rb.AddForce(Vector2.up * jumpforce);
+            animator.SetBool("Jump" , true);
+        }
+        else 
         {
-            rb.AddForce(playerTransform.up * jumpforce, ForceMode2D.Impulse);
+            animator.SetBool("Jump" , false);
         }
     }
    
@@ -50,7 +63,7 @@ public class Moviento_2 : MonoBehaviour
 
         //GameManager.Instance.RestarVidas();
         //GameManager.Instance.vidas; 
-        Global.nivel = 1;
+        //Global.nivel = 1;
     }
  
     //Update is called once per frame
