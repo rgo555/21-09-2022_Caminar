@@ -78,4 +78,12 @@ public class Moviento_2 : MonoBehaviour
         //playerTransform.Translate(Vector3.right * horizontal * speed * Time.deltaTime, Space.World);
         
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 6)
+        {
+            StartCoroutine(GameObject.Find("Main Camera").GetComponent<CameraShake>().Shake());
+        }
+    }
 }
