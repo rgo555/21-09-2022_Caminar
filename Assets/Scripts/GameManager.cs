@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        
         //Si ya hay una instancia y noo soy yo me destruyo
         if(Instance != null  && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
@@ -34,5 +36,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LoadScene(int scenebuildIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }
